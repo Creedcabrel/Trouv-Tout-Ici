@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil vendeur — Espace vendeur | MarketPlace</title>
+
+  <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Barre de navigation supérieure -->
+  <nav class="navbar navbar-expand-lg navbar-glass sticky-top">
+    <div class="container py-2">
+      <button class="btn btn-outline-secondary d-lg-none me-2" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#sidebarVendeur" aria-controls="sidebarVendeur"
+              aria-label="Menu latéral">☰</button>
+
+      <a class="navbar-brand fw-semibold" href="../accueil.html">
+        <span class="text-primary">Market</span>Place <span class="text-secondary fw-normal">/ Vendeur</span>
+      </a>
+
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <a class="btn btn-outline-secondary" href="../catalogue.html">Voir le site</a>
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Boutique Alpha
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><h6 class="dropdown-header">Mon compte</h6></li>
+            <li><a class="dropdown-item" href="connexion-vendeur.html">Déconnexion</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="../admin/tableau-de-bord-admin.html">Basculer en Admin</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row g-4">
+      <!-- Menu latéral (visible sur desktop) -->
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="bg-white rounded-4 border p-4">
+          <div class="fw-semibold mb-1">Menu vendeur</div>
+          <div class="text-secondary small mb-3">Gestion de votre boutique</div>
+
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action px-0" href="tableau-de-bord-vendeur.html">Tableau de bord</a>
+            <a class="list-group-item list-group-item-action px-0" href="mes-produits.html">Mes produits</a>
+            <a class="list-group-item list-group-item-action px-0" href="mes-commandes.html">Mes commandes</a>
+            <a class="list-group-item list-group-item-action px-0" href="mes-revenus-commissions.html">Revenus & commissions</a>
+            <a class="list-group-item list-group-item-action px-0 active" href="profil-vendeur.html">Profil vendeur</a>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="alert alert-primary mb-0">
+            <div class="fw-semibold">Commission appliquée</div>
+            <div class="small mb-0">Électronique : 8% (définie par l'admin).</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Contenu principal -->
+      <main class="col-lg-9">
+        <!-- En-tête avec titre et actions -->
+        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
+          <div>
+            <h1 class="h3 fw-semibold mb-1">Profil vendeur</h1>
+            <p class="text-secondary mb-0">Informations de votre boutique et paramètres.</p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalChangerMdp">
+              Changer mot de passe
+            </button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSauverProfil">
+              Enregistrer 
+            </button>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Formulaire de profil -->
+          <div class="col-lg-7">
+            <div class="bg-white rounded-4 border p-4 p-md-5">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="icon-badge text-primary">🏪</div>
+                <div>
+                  <div class="fw-semibold">Boutique Alpha</div>
+                  <div class="text-secondary small">alpha@demo.com • Satisfaction 92% </div>
+                </div>
+              </div>
+
+              <form>
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label for="boutiqueNom" class="form-label">Nom de la boutique</label>
+                    <input type="text" class="form-control form-control-lg" id="boutiqueNom" value="Boutique Alpha" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="boutiqueEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control form-control-lg" id="boutiqueEmail" value="alpha@demo.com" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="boutiqueTelephone" class="form-label">Téléphone</label>
+                    <input type="tel" class="form-control form-control-lg" id="boutiqueTelephone" value="+229 01 23 45 67" pattern="[0-9+\s]{10,}" title="Numéro de téléphone valide">
+                  </div>
+                  <div class="col-12">
+                    <label for="boutiqueAdresse" class="form-label">Adresse</label>
+                    <input type="text" class="form-control form-control-lg" id="boutiqueAdresse" value="Cotonou, Quartier..." required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="boutiqueCategorie" class="form-label">Catégorie principale</label>
+                    <select class="form-select form-select-lg" id="boutiqueCategorie">
+                      <option selected>Électronique</option>
+                      <option>Maison</option>
+                      <option>Mode</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="boutiqueStatut" class="form-label">Statut</label>
+                    <select class="form-select form-select-lg" id="boutiqueStatut">
+                      <option selected>Actif</option>
+                      <option>En vérification</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label for="boutiqueDescription" class="form-label">Description de la boutique</label>
+                    <textarea class="form-control" id="boutiqueDescription" rows="4">Boutique spécialisée en produits électroniques, accessoires et gadgets.</textarea>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+          <!-- Colonne latérale : commission + sécurité -->
+          <div class="col-lg-5">
+            <div class="bg-white rounded-4 border p-4 p-md-5 mb-4">
+              <div class="fw-semibold mb-1">Commission appliquée</div>
+              <div class="text-secondary small mb-3">Définie par l'administrateur</div>
+
+              <div class="p-3 rounded-4 border">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Électronique</span>
+                  <span class="fw-semibold">8%</span>
+                </div>
+                <div class="text-secondary small mt-1">
+                  Cette commission est automatiquement déduite lors du paiement.
+                </div>
+              </div>
+
+              <div class="d-grid mt-3">
+                <a class="btn btn-outline-primary" href="../paiement.html">Voir exemple de paiement</a>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-4 border p-4 p-md-5">
+              <div class="fw-semibold mb-1">🔐 Sécurité </div>
+              <div class="text-secondary small mb-3">Bonnes pratiques à mentionner</div>
+
+              <ul class="text-secondary small mb-0">
+                <li>Mot de passe fort et renouvellement régulier</li>
+                <li>Validation par admin avant activation</li>
+                <li>Historique des actions disponibles</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Menu latéral version mobile (offcanvas) -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarVendeur" aria-labelledby="sidebarVendeurLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="sidebarVendeurLabel">Menu vendeur</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="tableau-de-bord-vendeur.html">Tableau de bord</a>
+        <a class="list-group-item list-group-item-action" href="mes-produits.html">Mes produits</a>
+        <a class="list-group-item list-group-item-action" href="mes-commandes.html">Mes commandes</a>
+        <a class="list-group-item list-group-item-action" href="mes-revenus-commissions.html">Revenus & commissions</a>
+        <a class="list-group-item list-group-item-action active" href="profil-vendeur.html">Profil vendeur</a>
+      </div>
+
+      <hr>
+
+      <a class="btn btn-outline-secondary w-100 mb-2" href="../catalogue.html">Voir le site</a>
+      <a class="btn btn-outline-danger w-100" href="connexion-vendeur.html">Déconnexion</a>
+    </div>
+  </div>
+
+  <!-- MODAL : Changer mot de passe -->
+  <div class="modal fade" id="modalChangerMdp" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Changer le mot de passe</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="ancienMdp" class="form-label">Ancien mot de passe</label>
+            <input type="password" class="form-control form-control-lg" id="ancienMdp" placeholder="••••••••">
+          </div>
+          <div class="mb-3">
+            <label for="nouveauMdp" class="form-label">Nouveau mot de passe</label>
+            <input type="password" class="form-control form-control-lg" id="nouveauMdp" placeholder="••••••••" minlength="6">
+          </div>
+          <div class="mb-3">
+            <label for="confirmationMdp" class="form-label">Confirmer</label>
+            <input type="password" class="form-control form-control-lg" id="confirmationMdp" placeholder="••••••••">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Sauvegarde profil (simulation) -->
+  <div class="modal fade" id="modalSauverProfil" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Profil mis à jour</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body text-secondary">
+          <p>Les modifications ont été enregistrées .</p>
+          <p class="small">Dans une version dynamique, les données seraient sauvegardées en base.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pied de page -->
+  <footer class="border-top mt-5">
+    <div class="container py-3">
+      <div class="text-center text-secondary small">
+        © 2026 MarketPlace — Espace vendeur 
+      </div>
+    </div>
+  </footer>
+
+  <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

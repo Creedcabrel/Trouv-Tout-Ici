@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inscription vendeur — MarketPlace</title>
+
+  <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="bg-light">
+
+  <!-- Barre de navigation simplifiée -->
+  <nav class="navbar navbar-glass">
+    <div class="container py-2">
+      <a class="navbar-brand fw-semibold" href="../accueil.html">
+        <span class="text-primary">Market</span>Place
+        <span class="text-secondary fw-normal">/ Vendeur</span>
+      </a>
+      <div class="d-flex gap-2">
+        <a class="btn btn-outline-secondary" href="../Vendeur/Connexion.html">J'ai déjà un compte</a>
+        <a class="btn btn-outline-secondary" href="../accueil.html">Retour au site</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <div class="bg-white rounded-4 border p-4 p-md-5">
+          <h1 class="h4 fw-semibold mb-1">Inscription vendeur</h1>
+          <p class="text-secondary mb-4">
+            Créez votre boutique sur la marketplace . 
+            <span class="fw-semibold">Compte en attente de validation par l'administrateur</span>.
+          </p>
+
+          <!-- Formulaire d'inscription  -->
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="boutiqueNom" class="form-label">Nom de la boutique</label>
+                <input type="text" class="form-control form-control-lg" id="boutiqueNom"  required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="categoriePrincipale" class="form-label">Catégorie principale</label>
+                <select class="form-select form-select-lg" id="categoriePrincipale" required>
+                  <option value="" selected disabled>Choisir...</option>
+                  <option>Électronique</option>
+                  <option>Maison</option>
+                  <option>Mode</option>
+                  <option>Beauté</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="responsableNom" class="form-label">Nom du responsable</label>
+                <input type="text" class="form-control form-control-lg" id="responsableNom" 
+                       placeholder="Nom complet" required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="telephone" class="form-label">Téléphone</label>
+                <input type="tel" class="form-control form-control-lg" id="telephone" 
+                       placeholder="+229 01 23 45 67" pattern="[0-9+\s]{10,}" 
+                       title="Numéro de téléphone valide (ex: +229 01 23 45 67)" required>
+              </div>
+
+              <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control form-control-lg" id="email" 
+                       placeholder="boutique@demo.com" required>
+              </div>
+
+              <div class="col-12">
+                <label for="adresse" class="form-label">Adresse</label>
+                <input type="text" class="form-control form-control-lg" id="adresse" 
+                       placeholder="Ville, quartier..." required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="pieceIdentite" class="form-label">Pièce d'identité</label>
+                <select class="form-select form-select-lg" id="pieceIdentite">
+                  <option value="" selected disabled>Choisir...</option>
+                  <option>CIP</option>
+                  <option>Passeport</option>
+                  <option>Carte nationale</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="motdepasse" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control form-control-lg" id="motdepasse" 
+                       placeholder="••••••••" minlength="6" required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="motdepasseConfirmation" class="form-label">Confirmer</label>
+                <input type="password" class="form-control form-control-lg" id="motdepasseConfirmation" 
+                       placeholder="••••••••" required>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="cgvVendeur" required>
+                  <label class="form-check-label" for="cgvVendeur">
+                    J'accepte les conditions générales de vente 
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+              <a href="../Vendeur/Connexion.html" class="btn btn-primary btn-lg">S'inscrire</a>
+              <a href="../accueil.html" class="btn btn-outline-secondary btn-lg">Annuler</a>
+            </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Pied de page minimal (optionnel) -->
+  <footer class="border-top mt-5">
+    <div class="container py-4">
+      <div class="text-center text-secondary small">
+        © 2026 MarketPlace — 
+      </div>
+    </div>
+  </footer>
+
+  <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

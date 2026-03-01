@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestion des vendeurs — Espace admin | MarketPlace</title>
+
+  <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Barre de navigation principale -->
+  <nav class="navbar navbar-expand-lg navbar-glass sticky-top">
+    <div class="container py-2">
+      <button class="btn btn-outline-secondary d-lg-none me-2" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#sidebarAdmin" aria-controls="sidebarAdmin"
+              aria-label="Menu latéral">
+        ☰
+      </button>
+
+      <a class="navbar-brand fw-semibold" href="../accueil.html">
+        <span class="text-primary">Market</span>Place
+        <span class="text-secondary fw-normal">/ Admin</span>
+      </a>
+
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <a class="btn btn-outline-secondary" href="../catalogue.html">Voir le site</a>
+
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Admin
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><h6 class="dropdown-header">Mon compte</h6></li>
+            <li><a class="dropdown-item" href="statistiques.html">Statistiques</a></li>
+            <li><a class="dropdown-item" href="connexion-admin.html">Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row g-4">
+      <!-- Menu latéral (visible sur desktop) -->
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="bg-white rounded-4 border p-4">
+          <div class="fw-semibold mb-1">Menu admin</div>
+          <div class="text-secondary small mb-3">Gestion de la plateforme</div>
+
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action px-0" href="tableau-de-bord-admin.html">Tableau de bord</a>
+            <a class="list-group-item list-group-item-action px-0 active" href="gestion-vendeurs.html">Gestion vendeurs</a>
+            <a class="list-group-item list-group-item-action px-0" href="gestion-commissions.html">Gestion commissions</a>
+            <a class="list-group-item list-group-item-action px-0" href="gestion-commandes.html">Gestion commandes</a>
+            <a class="list-group-item list-group-item-action px-0" href="statistiques.html">Statistiques</a>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="alert alert-primary mb-0">
+            <div class="fw-semibold">💡 Rappel</div>
+            <div class="small mb-0">
+              Les vendeurs vendent sur la plateforme, la commission est prélevée automatiquement à chaque vente.
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Contenu principal -->
+      <main class="col-lg-9">
+        <!-- En-tête avec titre et actions -->
+        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
+          <div>
+            <h1 class="h3 fw-semibold mb-1">Gestion des vendeurs</h1>
+            <p class="text-secondary mb-0">Lister, vérifier, activer ou suspendre les comptes vendeurs.</p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalFiltrer">
+              Filtrer
+            </button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAjouterVendeur">
+              + Ajouter un vendeur
+            </button>
+          </div>
+        </div>
+
+        <!-- Indicateurs clés -->
+        <div class="row g-3">
+          <div class="col-md-6 col-xl-3">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Total vendeurs</div>
+              <div class="h4 fw-semibold mb-1">12</div>
+              <div class="text-secondary small">inscrits</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Actifs</div>
+              <div class="h4 fw-semibold mb-1">10</div>
+              <div class="text-secondary small">2 suspendus</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Nouveaux (30j)</div>
+              <div class="h4 fw-semibold mb-1">3</div>
+              <div class="text-secondary small">demandes</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Satisfaction moyenne</div>
+              <div class="h4 fw-semibold mb-1">4.3★</div>
+              <div class="text-secondary small">sur 5</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tableau des vendeurs -->
+        <div class="bg-white rounded-4 border p-4 p-md-5 mt-4">
+          <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-3">
+            <div>
+              <div class="fw-semibold">Liste des vendeurs</div>
+              <div class="text-secondary small">Les commissions sont liées à la catégorie principale.</div>
+            </div>
+
+            <div class="input-group" style="max-width: 320px;">
+              <span class="input-group-text bg-white">🔎</span>
+              <input type="search" class="form-control" placeholder="Rechercher un vendeur...">
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr class="text-secondary small">
+                  <th>Boutique</th>
+                  <th>Catégorie principale</th>
+                  <th class="text-end">CA (30j)</th>
+                  <th class="text-end">Commission</th>
+                  <th class="text-end">Statut</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Boutique Alpha -->
+                <tr>
+                  <td>
+                    <div class="fw-semibold">Boutique Alpha</div>
+                    <div class="text-secondary small">alpha@demo.com • Satisfaction 92%</div>
+                  </td>
+                  <td><span class="badge text-bg-primary">Électronique</span></td>
+                  <td class="text-end fw-semibold">520 000</td>
+                  <td class="text-end">8%</td>
+                  <td class="text-end"><span class="badge text-bg-success">Active</span></td>
+                  <td class="text-end">
+                    <div class="btn-group">
+                      <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalDetailsAlpha">
+                        Détails
+                      </button>
+                      <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalModifierAlpha">
+                        Modifier
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Boutique Nova -->
+                <tr>
+                  <td>
+                    <div class="fw-semibold">Boutique Nova</div>
+                    <div class="text-secondary small">nova@demo.com • Satisfaction 89%</div>
+                  </td>
+                  <td><span class="badge text-bg-secondary">Maison</span></td>
+                  <td class="text-end fw-semibold">410 000</td>
+                  <td class="text-end">10%</td>
+                  <td class="text-end"><span class="badge text-bg-success">Active</span></td>
+                  <td class="text-end">
+                    <div class="btn-group">
+                      <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalDetailsNova">
+                        Détails
+                      </button>
+                      <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalModifierNova">
+                        Modifier
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Boutique K -->
+                <tr>
+                  <td>
+                    <div class="fw-semibold">Boutique K</div>
+                    <div class="text-secondary small">k@demo.com • Satisfaction 85%</div>
+                  </td>
+                  <td><span class="badge text-bg-warning">Mode</span></td>
+                  <td class="text-end fw-semibold">310 000</td>
+                  <td class="text-end">12%</td>
+                  <td class="text-end"><span class="badge text-bg-success">Active</span></td>
+                  <td class="text-end">
+                    <div class="btn-group">
+                      <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalDetailsK">
+                        Détails
+                      </button>
+                      <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalModifierK">
+                        Modifier
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Boutique Zen (suspendue) -->
+                <tr>
+                  <td>
+                    <div class="fw-semibold">Boutique Zen</div>
+                    <div class="text-secondary small">zen@demo.com • Satisfaction 70%</div>
+                  </td>
+                  <td><span class="badge text-bg-light">Beauté</span></td>
+                  <td class="text-end fw-semibold">95 000</td>
+                  <td class="text-end">10% (global)</td>
+                  <td class="text-end"><span class="badge text-bg-danger">Suspendue</span></td>
+                  <td class="text-end">
+                    <div class="btn-group">
+                      <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalDetailsZen">
+                        Détails
+                      </button>
+                      <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalSuspendreZen">
+                        Gérer
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Menu latéral version mobile (offcanvas) -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarAdmin" aria-labelledby="sidebarAdminLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="sidebarAdminLabel">Menu admin</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="tableau-de-bord-admin.html">Tableau de bord</a>
+        <a class="list-group-item list-group-item-action active" href="gestion-vendeurs.html">Gestion vendeurs</a>
+        <a class="list-group-item list-group-item-action" href="gestion-commissions.html">Gestion commissions</a>
+        <a class="list-group-item list-group-item-action" href="gestion-commandes.html">Gestion commandes</a>
+        <a class="list-group-item list-group-item-action" href="statistiques.html">Statistiques</a>
+      </div>
+
+      <hr>
+
+      <a class="btn btn-outline-secondary w-100 mb-2" href="../catalogue.html">Voir le site</a>
+      <a class="btn btn-outline-danger w-100" href="connexion-admin.html">Déconnexion</a>
+    </div>
+  </div>
+
+  <!-- MODAL : Filtrer -->
+  <div class="modal fade" id="modalFiltrer" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Filtrer les vendeurs</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="statutFiltre" class="form-label">Statut</label>
+              <select class="form-select form-select-lg" id="statutFiltre">
+                <option selected>Tous</option>
+                <option>Actifs</option>
+                <option>Suspendus</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="categorieFiltre" class="form-label">Catégorie</label>
+              <select class="form-select form-select-lg" id="categorieFiltre">
+                <option selected>Toutes</option>
+                <option>Électronique</option>
+                <option>Maison</option>
+                <option>Mode</option>
+                <option>Beauté</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Appliquer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Ajouter un vendeur -->
+  <div class="modal fade" id="modalAjouterVendeur" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter un vendeur</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="nouveauNom" class="form-label">Nom de la boutique</label>
+              <input type="text" class="form-control form-control-lg" id="nouveauNom" placeholder="Ex: Boutique Luna">
+            </div>
+            <div class="col-12">
+              <label for="nouveauEmail" class="form-label">Email</label>
+              <input type="email" class="form-control form-control-lg" id="nouveauEmail" placeholder="luna@demo.com">
+            </div>
+            <div class="col-12">
+              <label for="nouveauCategorie" class="form-label">Catégorie principale</label>
+              <select class="form-select form-select-lg" id="nouveauCategorie">
+                <option value="" selected disabled>Choisir...</option>
+                <option>Électronique</option>
+                <option>Maison</option>
+                <option>Mode</option>
+                <option>Beauté</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="nouveauStatut" class="form-label">Statut</label>
+              <select class="form-select form-select-lg" id="nouveauStatut">
+                <option selected>Active</option>
+                <option>Suspendue</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Détails Alpha -->
+  <div class="modal fade" id="modalDetailsAlpha" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Détails — Boutique Alpha</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Catégorie</span><span class="fw-semibold">Électronique</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Commission</span><span class="fw-semibold">8%</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">CA 30j</span><span class="fw-semibold">520 000 FCFA</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Commissions estimées</span><span class="fw-semibold">41 600 FCFA</span>
+          </div>
+          <hr class="my-3">
+          <div class="text-secondary small">
+            Email : alpha@demo.com • Satisfaction : 92%
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+          <a class="btn btn-primary" href="gestion-commandes.html">Voir commandes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Modifier Alpha -->
+  <div class="modal fade" id="modalModifierAlpha" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier — Boutique Alpha</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="statutAlpha" class="form-label">Statut</label>
+            <select class="form-select form-select-lg" id="statutAlpha">
+              <option selected>Active</option>
+              <option>Suspendue</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="commissionAlpha" class="form-label">Commission (%)</label>
+            <div class="input-group input-group-lg">
+              <input type="number" class="form-control" id="commissionAlpha" value="8" min="0" max="100" step="0.5">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Détails Nova -->
+  <div class="modal fade" id="modalDetailsNova" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Détails — Boutique Nova</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Catégorie</span><span class="fw-semibold">Maison</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Commission</span><span class="fw-semibold">10%</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">CA 30j</span><span class="fw-semibold">410 000 FCFA</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Commissions estimées</span><span class="fw-semibold">41 000 FCFA</span>
+          </div>
+          <hr class="my-3">
+          <div class="text-secondary small">
+            Email : nova@demo.com • Satisfaction : 89%
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+          <a class="btn btn-primary" href="gestion-commandes.html">Voir commandes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Modifier Nova -->
+  <div class="modal fade" id="modalModifierNova" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier — Boutique Nova</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="statutNova" class="form-label">Statut</label>
+            <select class="form-select form-select-lg" id="statutNova">
+              <option selected>Active</option>
+              <option>Suspendue</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="commissionNova" class="form-label">Commission (%)</label>
+            <div class="input-group input-group-lg">
+              <input type="number" class="form-control" id="commissionNova" value="10" min="0" max="100" step="0.5">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Détails K -->
+  <div class="modal fade" id="modalDetailsK" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Détails — Boutique K</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Catégorie</span><span class="fw-semibold">Mode</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Commission</span><span class="fw-semibold">12%</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">CA 30j</span><span class="fw-semibold">310 000 FCFA</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Commissions estimées</span><span class="fw-semibold">37 200 FCFA</span>
+          </div>
+          <hr class="my-3">
+          <div class="text-secondary small">
+            Email : k@demo.com • Satisfaction : 85%
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+          <a class="btn btn-primary" href="gestion-commandes.html">Voir commandes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Modifier K -->
+  <div class="modal fade" id="modalModifierK" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier — Boutique K</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="statutK" class="form-label">Statut</label>
+            <select class="form-select form-select-lg" id="statutK">
+              <option selected>Active</option>
+              <option>Suspendue</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="commissionK" class="form-label">Commission (%)</label>
+            <div class="input-group input-group-lg">
+              <input type="number" class="form-control" id="commissionK" value="12" min="0" max="100" step="0.5">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Détails Zen -->
+  <div class="modal fade" id="modalDetailsZen" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Détails — Boutique Zen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Catégorie</span><span class="fw-semibold">Beauté</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Commission</span><span class="fw-semibold">10% (global)</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">CA 30j</span><span class="fw-semibold">95 000 FCFA</span>
+          </div>
+          <div class="d-flex justify-content-between py-1">
+            <span class="text-secondary">Commissions estimées</span><span class="fw-semibold">9 500 FCFA</span>
+          </div>
+          <hr class="my-3">
+          <div class="text-secondary small">
+            Email : zen@demo.com • Satisfaction : 70%
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+          <a class="btn btn-primary" href="gestion-commandes.html">Voir commandes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Gérer Zen (suspendre) -->
+  <div class="modal fade" id="modalSuspendreZen" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Gérer — Boutique Zen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-warning mb-0">
+            <div class="fw-semibold">Action admin </div>
+            <div class="small">Suspendre ou réactiver la boutique selon les contrôles.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button class="btn btn-danger" data-bs-dismiss="modal">Suspendre</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pied de page -->
+  <footer class="border-top mt-5">
+    <div class="container py-3">
+      <div class="text-center text-secondary small">
+        © 2026 MarketPlace — Espace admin 
+      </div>
+    </div>
+  </footer>
+
+  <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

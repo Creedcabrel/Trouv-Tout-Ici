@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mes produits — Espace vendeur | MarketPlace</title>
+
+  <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Barre de navigation supérieure -->
+  <nav class="navbar navbar-expand-lg navbar-glass sticky-top">
+    <div class="container py-2">
+      <button class="btn btn-outline-secondary d-lg-none me-2" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#sidebarVendeur" aria-controls="sidebarVendeur"
+              aria-label="Menu latéral">
+        ☰
+      </button>
+
+      <a class="navbar-brand fw-semibold" href="../accueil.html">
+        <span class="text-primary">Market</span>Place
+        <span class="text-secondary fw-normal">/ Vendeur</span>
+      </a>
+
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <a class="btn btn-outline-secondary" href="../catalogue.html">Voir le site</a>
+
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Boutique Alpha
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="profil-vendeur.html">Profil vendeur</a></li>
+            <li><a class="dropdown-item" href="connexion-vendeur.html">Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row g-4">
+      <!-- Menu latéral (visible sur desktop) -->
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="bg-white rounded-4 border p-4">
+          <div class="fw-semibold mb-1">Menu vendeur</div>
+          <div class="text-secondary small mb-3">Gestion de votre boutique</div>
+
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action px-0" href="tableau-de-bord-vendeur.html">Tableau de bord</a>
+            <a class="list-group-item list-group-item-action px-0 active" href="mes-produits.html">Mes produits</a>
+            <a class="list-group-item list-group-item-action px-0" href="mes-commandes.html">Mes commandes</a>
+            <a class="list-group-item list-group-item-action px-0" href="mes-revenus-commissions.html">Revenus & commissions</a>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="alert alert-primary mb-0">
+            <div class="fw-semibold">Commission appliquée</div>
+            <div class="small mb-0">Électronique : 8% • déduite automatiquement.</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Contenu principal -->
+      <main class="col-lg-9">
+        <!-- En-tête avec titre et actions -->
+        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
+          <div>
+            <h1 class="h3 fw-semibold mb-1">Mes produits</h1>
+            <p class="text-secondary mb-0">Gérez votre catalogue, les prix et les stocks.</p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalFiltrerProduits">
+              Filtrer
+            </button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAjouterProduit">
+              + Ajouter un produit
+            </button>
+          </div>
+        </div>
+
+        <!-- Cartes de synthèse -->
+        <div class="row g-3">
+          <div class="col-md-6 col-xl-4">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Produits actifs</div>
+              <div class="h4 fw-semibold mb-1">24</div>
+              <div class="text-secondary small">dont 3 en rupture</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Vues (7 jours)</div>
+              <div class="h4 fw-semibold mb-1">1 240</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Taux conversion</div>
+              <div class="h4 fw-semibold mb-1">2.8%</div>
+              <div class="text-secondary small">achats/vues</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tableau des produits -->
+        <div class="bg-white rounded-4 border p-4 p-md-5 mt-4">
+          <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-3">
+            <div>
+              <div class="fw-semibold">Liste des produits</div>
+              <div class="text-secondary small">Les prix et catégories déterminent les commissions.</div>
+            </div>
+
+            <div class="input-group" style="max-width: 320px;">
+              <span class="input-group-text bg-white">🔎</span>
+              <input type="search" class="form-control" placeholder="Rechercher un produit...">
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr class="text-secondary small">
+                  <th>Produit</th>
+                  <th>Catégorie</th>
+                  <th class="text-end">Prix</th>
+                  <th class="text-end">Stock</th>
+                  <th class="text-end">Statut</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="fw-semibold">Casque Bluetooth</div>
+                    <div class="text-secondary small">SKU: ALP-001</div>
+                  </td>
+                  <td><span class="badge text-bg-primary">Électronique</span></td>
+                  <td class="text-end fw-semibold">18 500</td>
+                  <td class="text-end">12</td>
+                  <td class="text-end"><span class="badge text-bg-success">Actif</span></td>
+                  <td class="text-end">
+                    <div class="btn-group">
+                      <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalEditCasque">
+                        Modifier
+                      </button>
+                      <a href="../fiche-produit.html" class="btn btn-sm btn-outline-secondary">Aperçu</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="fw-semibold">Enceinte portable</div>
+                    <div class="text-secondary small">SKU: ALP-002</div>
+                  </td>
+                  <td><span class="badge text-bg-primary">Électronique</span></td>
+                  <td class="text-end fw-semibold">24 900</td>
+                  <td class="text-end">5</td>
+                  <td class="text-end"><span class="badge text-bg-success">Actif</span></td>
+                  <td class="text-end">
+                    <div class="btn-group">
+                      <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalEditEnceinte">
+                        Modifier
+                      </button>
+                      <a href="../fiche-produit2.html" class="btn btn-sm btn-outline-secondary">Aperçu</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="fw-semibold">Powerbank 20 000mAh</div>
+                    <div class="text-secondary small">SKU: ALP-003</div>
+                  </td>
+                  <td><span class="badge text-bg-primary">Électronique</span></td>
+                  <td class="text-end fw-semibold">13 900</td>
+                  <td class="text-end">0</td>
+                  <td class="text-end"><span class="badge text-bg-warning">Rupture</span></td>
+                  <td class="text-end">
+                    <div class="btn-group">
+                      <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalEditPowerbank">
+                        Modifier
+                      </button>
+                      <a href="../fiche-produit3.html" class="btn btn-sm btn-outline-secondary">Aperçu</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="alert alert-primary mt-3 mb-0">
+            <div class="fw-semibold">💡 Principe</div>
+            <div class="small mb-0">
+              Chaque produit est lié à un vendeur et une catégorie. La commission est calculée automatiquement lors du paiement.
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Menu latéral version mobile (offcanvas) -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarVendeur" aria-labelledby="sidebarVendeurLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="sidebarVendeurLabel">Menu vendeur</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="tableau-de-bord-vendeur.html">Tableau de bord</a>
+        <a class="list-group-item list-group-item-action active" href="mes-produits.html">Mes produits</a>
+        <a class="list-group-item list-group-item-action" href="mes-commandes.html">Mes commandes</a>
+        <a class="list-group-item list-group-item-action" href="mes-revenus-commissions.html">Revenus & commissions</a>
+      </div>
+
+      <hr>
+
+      <a class="btn btn-outline-secondary w-100 mb-2" href="../catalogue.html">Voir le site</a>
+      <a class="btn btn-outline-danger w-100" href="connexion-vendeur.html">Déconnexion</a>
+    </div>
+  </div>
+
+  <!-- MODAL : Filtrer -->
+  <div class="modal fade" id="modalFiltrerProduits" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Filtrer les produits</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="statutFiltre" class="form-label">Statut</label>
+              <select class="form-select form-select-lg" id="statutFiltre">
+                <option selected>Tous</option>
+                <option>Actif</option>
+                <option>Rupture</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="prixFiltre" class="form-label">Prix</label>
+              <select class="form-select form-select-lg" id="prixFiltre">
+                <option selected>Tous</option>
+                <option>Moins de 10 000</option>
+                <option>10 000 - 25 000</option>
+                <option>Plus de 25 000</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Appliquer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Ajouter un produit -->
+  <div class="modal fade" id="modalAjouterProduit" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter un produit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-7">
+              <label for="produitNom" class="form-label">Nom du produit</label>
+              <input type="text" class="form-control form-control-lg" id="produitNom" placeholder="Ex: Écouteurs sans fil">
+            </div>
+            <div class="col-md-5">
+              <label for="produitCategorie" class="form-label">Catégorie</label>
+              <select class="form-select form-select-lg" id="produitCategorie">
+                <option selected>Électronique</option>
+                <option>Maison</option>
+                <option>Mode</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="produitPrix" class="form-label">Prix (FCFA)</label>
+              <input type="number" class="form-control form-control-lg" id="produitPrix" placeholder="15000" min="0">
+            </div>
+            <div class="col-md-4">
+              <label for="produitStock" class="form-label">Stock initial</label>
+              <input type="number" class="form-control form-control-lg" id="produitStock" placeholder="10" min="0">
+            </div>
+            <div class="col-md-4">
+              <label for="produitStatut" class="form-label">Statut</label>
+              <select class="form-select form-select-lg" id="produitStatut">
+                <option selected>Actif</option>
+                <option>Rupture</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="produitDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="produitDescription" rows="4" placeholder="Description du produit..."></textarea>
+            </div>
+          </div>
+
+          <div class="alert alert-primary mt-3 mb-0">
+            <div class="fw-semibold">Commission applicable</div>
+            <div class="small mb-0">Électronique : 8% • prélevée automatiquement sur chaque vente.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Modifier Casque -->
+  <div class="modal fade" id="modalEditCasque" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier — Casque Bluetooth</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label for="editCasqueNom" class="form-label">Nom</label>
+              <input type="text" class="form-control form-control-lg" id="editCasqueNom" value="Casque Bluetooth">
+            </div>
+            <div class="col-md-4">
+              <label for="editCasquePrix" class="form-label">Prix (FCFA)</label>
+              <input type="number" class="form-control form-control-lg" id="editCasquePrix" value="18500" min="0">
+            </div>
+            <div class="col-md-4">
+              <label for="editCasqueStock" class="form-label">Stock</label>
+              <input type="number" class="form-control form-control-lg" id="editCasqueStock" value="12" min="0">
+            </div>
+            <div class="col-md-4">
+              <label for="editCasqueStatut" class="form-label">Statut</label>
+              <select class="form-select form-select-lg" id="editCasqueStatut">
+                <option selected>Actif</option>
+                <option>Rupture</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="editCasqueCategorie" class="form-label">Catégorie</label>
+              <select class="form-select form-select-lg" id="editCasqueCategorie">
+                <option selected>Électronique</option>
+                <option>Maison</option>
+                <option>Mode</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Modifier Enceinte -->
+  <div class="modal fade" id="modalEditEnceinte" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier — Enceinte portable</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label for="editEnceinteNom" class="form-label">Nom</label>
+              <input type="text" class="form-control form-control-lg" id="editEnceinteNom" value="Enceinte portable">
+            </div>
+            <div class="col-md-4">
+              <label for="editEnceintePrix" class="form-label">Prix (FCFA)</label>
+              <input type="number" class="form-control form-control-lg" id="editEnceintePrix" value="24900" min="0">
+            </div>
+            <div class="col-md-4">
+              <label for="editEnceinteStock" class="form-label">Stock</label>
+              <input type="number" class="form-control form-control-lg" id="editEnceinteStock" value="8" min="0">
+            </div>
+            <div class="col-md-4">
+              <label for="editEnceinteStatut" class="form-label">Statut</label>
+              <select class="form-select form-select-lg" id="editEnceinteStatut">
+                <option>Actif</option>
+                <option selected>Rupture</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="editEnceinteCategorie" class="form-label">Catégorie</label>
+              <select class="form-select form-select-lg" id="editEnceinteCategorie">
+                <option selected>Électronique</option>
+                <option>Maison</option>
+                <option>Mode</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Modifier Powerbank -->
+  <div class="modal fade" id="modalEditPowerbank" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier — Powerbank 20 000mAh</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label for="editPowerbankNom" class="form-label">Nom</label>
+              <input type="text" class="form-control form-control-lg" id="editPowerbankNom" value="Powerbank 20 000mAh">
+            </div>
+            <div class="col-md-4">
+              <label for="editPowerbankPrix" class="form-label">Prix (FCFA)</label>
+              <input type="number" class="form-control form-control-lg" id="editPowerbankPrix" value="13900" min="0">
+            </div>
+            <div class="col-md-4">
+              <label for="editPowerbankStock" class="form-label">Stock</label>
+              <input type="number" class="form-control form-control-lg" id="editPowerbankStock" value="0" min="0">
+            </div>
+            <div class="col-md-4">
+              <label for="editPowerbankStatut" class="form-label">Statut</label>
+              <select class="form-select form-select-lg" id="editPowerbankStatut">
+                <option>Actif</option>
+                <option selected>Rupture</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="editPowerbankCategorie" class="form-label">Catégorie</label>
+              <select class="form-select form-select-lg" id="editPowerbankCategorie">
+                <option selected>Électronique</option>
+                <option>Maison</option>
+                <option>Mode</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pied de page -->
+  <footer class="border-top mt-5">
+    <div class="container py-3">
+      <div class="text-center text-secondary small">
+        © 2026 MarketPlace — Espace vendeur 
+      </div>
+    </div>
+  </footer>
+
+  <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revenus & commissions — Espace vendeur | MarketPlace</title>
+
+  <!-- Bootstrap 5.3 (local) -->
+  <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <!-- Styles personnalisés -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Barre de navigation supérieure -->
+  <nav class="navbar navbar-expand-lg navbar-glass sticky-top">
+    <div class="container py-2">
+      <button class="btn btn-outline-secondary d-lg-none me-2" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#sidebarVendeur" aria-controls="sidebarVendeur"
+              aria-label="Menu latéral">
+        ☰
+      </button>
+
+      <a class="navbar-brand fw-semibold" href="../accueil.html">
+        <span class="text-primary">Market</span>Place
+        <span class="text-secondary fw-normal">/ Vendeur</span>
+      </a>
+
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <a class="btn btn-outline-secondary" href="../catalogue.html">Voir le site</a>
+
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Boutique Alpha
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="profil-vendeur.html">Profil vendeur</a></li>
+            <li><a class="dropdown-item" href="connexion-vendeur.html">Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row g-4">
+      <!-- Menu latéral (visible sur desktop) -->
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="bg-white rounded-4 border p-4">
+          <div class="fw-semibold mb-1">Menu vendeur</div>
+          <div class="text-secondary small mb-3">Gestion de votre boutique</div>
+
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action px-0" href="tableau-de-bord-vendeur.html">Tableau de bord</a>
+            <a class="list-group-item list-group-item-action px-0" href="mes-produits.html">Mes produits</a>
+            <a class="list-group-item list-group-item-action px-0" href="mes-commandes.html">Mes commandes</a>
+            <a class="list-group-item list-group-item-action px-0 active" href="mes-revenus-commissions.html">
+              Revenus & commissions
+            </a>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="alert alert-primary mb-0">
+            <div class="fw-semibold">Rappel commission</div>
+            <div class="small mb-0">
+              Commission = prix × taux • Net vendeur = prix − commission.
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Contenu principal -->
+      <main class="col-lg-9">
+        <!-- En-tête avec titre et actions -->
+        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
+          <div>
+            <h1 class="h3 fw-semibold mb-1">Revenus & commissions</h1>
+            <p class="text-secondary mb-0">Suivi des gains nets et des commissions prélevées.</p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalPeriode">
+              Période
+            </button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRetrait">
+              Demander un retrait
+            </button>
+          </div>
+        </div>
+
+        <!-- Indicateurs clés (KPI) -->
+        <div class="row g-3">
+          <div class="col-md-6 col-xl-3">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">CA (30 jours)</div>
+              <div class="h4 fw-semibold mb-1">265 000</div>
+              <div class="text-secondary small">FCFA</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Commissions payées</div>
+              <div class="h4 fw-semibold mb-1">21 200</div>
+              <div class="text-secondary small">8% moyen</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Net vendeur</div>
+              <div class="h4 fw-semibold mb-1">243 800</div>
+              <div class="text-secondary small">après commissions</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Solde disponible</div>
+              <div class="h4 fw-semibold mb-1">120 000</div>
+              <div class="text-secondary small">FCFA</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mt-1">
+          <!-- Tableau détaillé des ventes -->
+          <div class="col-lg-8">
+            <div class="bg-white rounded-4 border p-4 p-md-5">
+              <div class="d-flex align-items-start justify-content-between gap-2 mb-3">
+                <div>
+                  <div class="fw-semibold">Détail des ventes</div>
+                  <div class="text-secondary small">Chaque ligne affiche la commission et le net vendeur.</div>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalExporter">
+                  Exporter
+                </button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr class="text-secondary small">
+                      <th>Date</th>
+                      <th>Commande</th>
+                      <th>Article</th>
+                      <th class="text-end">Montant</th>
+                      <th class="text-end">Taux</th>
+                      <th class="text-end">Commission</th>
+                      <th class="text-end">Net vendeur</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-secondary">2026-02-22</td>
+                      <td class="fw-semibold">#CMD-1042</td>
+                      <td>
+                        <div class="fw-semibold">Casque Bluetooth</div>
+                        <div class="text-secondary small">Qté 1 • Électronique</div>
+                      </td>
+                      <td class="text-end fw-semibold">18 500</td>
+                      <td class="text-end">8%</td>
+                      <td class="text-end">1 480</td>
+                      <td class="text-end fw-semibold">17 020</td>
+                    </tr>
+                    <tr>
+                      <td class="text-secondary">2026-02-20</td>
+                      <td class="fw-semibold">#CMD-1037</td>
+                      <td>
+                        <div class="fw-semibold">Enceinte portable</div>
+                        <div class="text-secondary small">Qté 1 • Électronique</div>
+                      </td>
+                      <td class="text-end fw-semibold">24 900</td>
+                      <td class="text-end">8%</td>
+                      <td class="text-end">1 992</td>
+                      <td class="text-end fw-semibold">22 908</td>
+                    </tr>
+                    <tr>
+                      <td class="text-secondary">2026-02-18</td>
+                      <td class="fw-semibold">#CMD-1031</td>
+                      <td>
+                        <div class="fw-semibold">Powerbank 20 000mAh</div>
+                        <div class="text-secondary small">Qté 2 • Électronique</div>
+                      </td>
+                      <td class="text-end fw-semibold">27 800</td>
+                      <td class="text-end">8%</td>
+                      <td class="text-end">2 224</td>
+                      <td class="text-end fw-semibold">25 576</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th colspan="5" class="text-end">Totaux (période)</th>
+                      <th class="text-end">5 696</th>
+                      <th class="text-end">65 504</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <div class="alert alert-primary mt-3 mb-0">
+                <div class="fw-semibold">💡 Principe</div>
+                <div class="small mb-0">
+                  Les commissions sont automatiques : le taux (8% pour l'électronique) est appliqué sans action du vendeur.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Colonne latérale : répartition + aide -->
+          <div class="col-lg-4">
+            <div class="bg-white rounded-4 border p-4 p-md-5 mb-4">
+              <div class="fw-semibold mb-1">Répartition (30 jours)</div>
+              <div class="text-secondary small mb-3">Sur la période sélectionnée</div>
+
+              <div class="p-3 rounded-4 border mb-2">
+                <div class="text-secondary small">Chiffre d'affaires brut</div>
+                <div class="h5 fw-semibold mb-0">265 000 FCFA</div>
+              </div>
+              <div class="p-3 rounded-4 border mb-2">
+                <div class="text-secondary small">Commissions plateforme</div>
+                <div class="h5 fw-semibold mb-0">21 200 FCFA</div>
+              </div>
+              <div class="p-3 rounded-4 border">
+                <div class="text-secondary small">Net vendeur</div>
+                <div class="h5 fw-semibold mb-0">243 800 FCFA</div>
+              </div>
+
+              <hr class="my-4">
+
+              <div class="small text-secondary mb-2">Taux par catégorie</div>
+              <div class="p-3 rounded-4 border">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Électronique</span>
+                  <span class="fw-semibold">8%</span>
+                </div>
+                <div class="text-secondary small mt-1">
+                  (défini par l'administrateur)
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Menu latéral version mobile (offcanvas) -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarVendeur" aria-labelledby="sidebarVendeurLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="sidebarVendeurLabel">Menu vendeur</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="tableau-de-bord-vendeur.html">Tableau de bord</a>
+        <a class="list-group-item list-group-item-action" href="mes-produits.html">Mes produits</a>
+        <a class="list-group-item list-group-item-action" href="mes-commandes.html">Mes commandes</a>
+        <a class="list-group-item list-group-item-action active" href="mes-revenus-commissions.html">Revenus & commissions</a>
+      </div>
+
+      <hr>
+
+      <a class="btn btn-outline-secondary w-100 mb-2" href="../catalogue.html">Voir le site</a>
+      <a class="btn btn-outline-danger w-100" href="connexion-vendeur.html">Déconnexion</a>
+    </div>
+  </div>
+
+  <!-- MODAL : Changer de période -->
+  <div class="modal fade" id="modalPeriode" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Choisir une période</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <label for="periodeSelect" class="form-label">Période</label>
+          <select class="form-select form-select-lg" id="periodeSelect">
+            <option selected>30 derniers jours</option>
+            <option>7 derniers jours</option>
+            <option>Ce mois-ci</option>
+            <option>Cette année</option>
+          </select>
+        </div>
+        
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Appliquer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Demander un retrait -->
+  <div class="modal fade" id="modalRetrait" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Demander un retrait</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-primary mb-3">
+          </div>
+
+          <label for="montantRetrait" class="form-label">Montant (FCFA)</label>
+          <input type="number" class="form-control form-control-lg" id="montantRetrait" value="50000" min="0" step="1000">
+
+          <label for="methodeRetrait" class="form-label mt-3">Méthode de retrait</label>
+          <select class="form-select form-select-lg" id="methodeRetrait">
+            <option selected>Mobile Money</option>
+            <option>Virement bancaire</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Confirmer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Exporter -->
+  <div class="modal fade" id="modalExporter" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Exporter les données</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-secondary">Format PDF .</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pied de page -->
+  <footer class="border-top mt-5">
+    <div class="container py-3">
+      <div class="text-center text-secondary small">
+        © 2026 MarketPlace — Espace vendeur 
+      </div>
+    </div>
+  </footer>
+
+  <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

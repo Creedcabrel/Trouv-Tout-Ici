@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion vendeur — MarketPlace</title>
+
+  <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-glass">
+    <div class="container py-2">
+      <a class="navbar-brand fw-semibold" href="../accueil.html">
+        <span class="text-primary">Market</span>Place
+        <span class="text-secondary fw-normal">/ Vendeur</span>
+      </a>
+      <a class="btn btn-outline-secondary" href="../accueil.html">Retour au site</a>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-5">
+        <div class="bg-white rounded-4 border p-4 p-md-5">
+          <h1 class="h4 fw-semibold mb-1">Connexion vendeur</h1>
+          <p class="text-secondary mb-4">Accédez à votre espace boutique .</p>
+
+          <!-- Formulaire de connexion statique -->
+          <form>
+            <div class="mb-3">
+              <label for="emailVendeur" class="form-label">Email</label>
+              <input type="email" class="form-control form-control-lg" id="emailVendeur" 
+                     placeholder="boutique@demo.com" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="passwordVendeur" class="form-label">Mot de passe</label>
+              <input type="password" class="form-control form-control-lg" id="passwordVendeur" 
+                     placeholder="••••••••" required minlength="6">
+            </div>
+
+            <div class="d-grid gap-2">
+              <a href="tableau-de-bord-vendeur.html" class="btn btn-primary btn-lg">Se connecter</a>
+              <a href="inscription-vendeur.html" class="btn btn-outline-primary btn-lg">S'inscrire</a>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer optionnel pour cohérence -->
+  <footer class="border-top mt-5">
+    <div class="container py-3">
+      <div class="text-center text-secondary small">
+        © 2026 MarketPlace  
+      </div>
+    </div>
+  </footer>
+
+  <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

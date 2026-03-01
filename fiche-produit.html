@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casque Bluetooth — Fiche produit | MarketPlace</title>
+
+  <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Barre de navigation principale -->
+  <nav class="navbar navbar-expand-lg navbar-glass sticky-top">
+    <div class="container py-2">
+      <a class="navbar-brand fw-semibold" href="accueil.html">
+        <span class="text-primary">Market</span>Place
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+              aria-controls="navMain" aria-expanded="false" aria-label="Menu navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="accueil.html">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="catalogue.html">Catalogue</a></li>
+          <li class="nav-item"><a class="nav-link" href="panier.html">Panier</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Fil d'Ariane -->
+  <header class="container py-4">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="accueil.html" class="text-decoration-none">Accueil</a></li>
+        <li class="breadcrumb-item"><a href="catalogue.html" class="text-decoration-none">Catalogue</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Casque Bluetooth</li>
+      </ol>
+    </nav>
+  </header>
+
+  <main class="container pb-5">
+    <div class="row g-4">
+      <!-- Colonne galerie d'images -->
+      <div class="col-lg-6">
+        <div class="bg-white rounded-4 border p-3 p-md-4">
+          <!-- Image principale -->
+          <div class="ratio ratio-4x3 rounded-4 overflow-hidden bg-light">
+            <img
+              id="mainProductImage"
+              src="Images/Produits/headphone_1.png"
+              alt="Casque Bluetooth noir, vue de face"
+              class="w-100 h-100 object-fit-cover"
+            >
+          </div>
+
+          <!-- Petite images de sélection réduit -->
+          <div class="d-flex gap-2 mt-3" id="thumbnailsContainer">
+            <button class="btn btn-outline-secondary btn-sm rounded-3 p-1 thumb-btn active"
+                    type="button"
+                    data-img-src="Images/Produits/headphone_1.png"
+                    data-img-alt="Casque Bluetooth noir, vue de face"
+                    aria-label="Voir l'image principale, vue de face">
+              <img src="Images/Produits/headphone_1.png" alt="" width="44" height="32" class="rounded-2 object-fit-cover">
+            </button>
+
+            <button class="btn btn-outline-secondary btn-sm rounded-3 p-1 thumb-btn"
+                    type="button"
+                    data-img-src="Images/Produits/headphone_2.png"
+                    data-img-alt="Casque Bluetooth noir, vue de profil"
+                    aria-label="Voir l'image, vue de profil">
+              <img src="Images/Produits/headphone_2.png" alt="" width="44" height="32" class="rounded-2 object-fit-cover">
+            </button>
+
+            <button class="btn btn-outline-secondary btn-sm rounded-3 p-1 thumb-btn"
+                    type="button"
+                    data-img-src="Images/Produits/headphone_3.png"
+                    data-img-alt="Casque Bluetooth noir, vue détaillée des oreillettes"
+                    aria-label="Voir l'image, vue détaillée">
+              <img src="Images/Produits/headphone_3.png" alt="" width="44" height="32" class="rounded-2 object-fit-cover">
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne informations produit -->
+      <div class="col-lg-6">
+        <div class="bg-white rounded-4 border p-4 p-md-5 h-100">
+          <div class="d-flex align-items-start justify-content-between gap-3">
+            <div>
+              <span class="badge text-bg-primary mb-2">Électronique</span>
+              <h1 class="h3 fw-semibold mb-1">Casque Bluetooth</h1>
+              <p class="text-secondary mb-0">
+                Vendu par <a href="boutique-alpha.html" class="link-primary text-decoration-none">Boutique Alpha</a>
+              </p>
+            </div>
+            <span class="badge text-bg-light border">En stock</span>
+          </div>
+
+          <div class="d-flex align-items-center gap-2 mt-3">
+            <span class="h4 fw-semibold mb-0">18 500 FCFA</span>
+            <span class="text-secondary">•</span>
+            <span class="text-warning">★★★★½</span>
+            <span class="text-secondary small">(128 avis)</span>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="productColor" class="form-label">Couleur</label>
+              <select class="form-select form-select-lg" id="productColor">
+                <option selected>Noir</option>
+                <option>Blanc</option>
+                <option>Bleu</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="productQuantity" class="form-label">Quantité</label>
+              <input type="number" class="form-control form-control-lg" id="productQuantity" value="1" min="1" step="1">
+            </div>
+          </div>
+
+          <div class="d-grid gap-2 mt-4">
+            <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalPanier">
+              Ajouter au panier
+            </button>
+            <a class="btn btn-outline-secondary btn-lg" href="paiement.html">
+              Acheter maintenant
+            </a>
+          </div>
+
+          <div class="alert alert-primary mt-4 mb-0">
+            <div class="fw-semibold">Commission plateforme</div>
+            <div class="small mb-0">
+              Catégorie Électronique : <strong>8%</strong> • prélevée automatiquement.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal de confirmation d'ajout au panier -->
+  <div class="modal fade" id="modalPanier" tabindex="-1" aria-labelledby="modalPanierLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalPanierLabel">Ajout au panier</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <p>Le produit a été ajouté à votre panier.</p>
+          <p class="small text-secondary mb-0">Vous pourrez finaliser votre commande plus tard.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Continuer mes achats
+          </button>
+          <a href="panier.html" class="btn btn-primary">Voir le panier</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pied de page -->
+  <footer class="border-top">
+    <div class="container py-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+        <div class="text-secondary small">© 2026 MarketPlace — Démo statique</div>
+        <div class="d-flex gap-3 small">
+          <a class="link-secondary" href="pages/a-propos.html">À propos</a>
+          <a class="link-secondary" href="pages/contact.html">Contact</a>
+          <a class="link-secondary" href="pages/faq.html">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script pour le changement d'image -->
+  <script>
+    (function() {
+      const mainImage = document.getElementById('mainProductImage');
+      const thumbnails = document.querySelectorAll('.thumb-btn');
+
+      // Si pas d'image principale ou pas de miniatures, on sort
+      if (!mainImage || thumbnails.length === 0) return;
+
+      // Fonction pour mettre à jour l'image principale
+      function setMainImage(imgSrc, imgAlt) {
+        if (!imgSrc) return;
+        mainImage.src = imgSrc;
+        mainImage.alt = imgAlt || 'Image produit';
+      }
+
+      // Gestion du clic sur chaque miniature
+      thumbnails.forEach(btn => {
+        btn.addEventListener('click', function(event) {
+          event.preventDefault();
+
+          // Récupérer les données
+          const imgSrc = this.getAttribute('data-img-src');
+          const imgAlt = this.getAttribute('data-img-alt');
+
+          // Mettre à jour l'image principale
+          setMainImage(imgSrc, imgAlt);
+
+          // Mettre à jour l'état actif des boutons
+          thumbnails.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          this.classList.add('active');
+          this.setAttribute('aria-pressed', 'true');
+        });
+
+        // Support clavier (espace) pour accessibilité
+        btn.addEventListener('keydown', function(event) {
+          if (event.key === ' ' || event.key === 'Space') {
+            event.preventDefault();
+            this.click();
+          }
+        });
+      });
+
+      //  On vérifie que la première image est bien chargée
+      // Si elle échoue, on met une image de remplacement (juste pour l'exemple)
+      const testImage = new Image();
+      testImage.onerror = function() {
+        console.warn("L'image principale n'a pas pu être chargée, vérifie le chemin.");
+        // Optionnel : mainImage.src = 'images/placeholder.jpg';
+      };
+      testImage.src = mainImage.src;
+    })();
+  </script>
+</body>
+</html>

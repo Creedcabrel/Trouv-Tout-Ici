@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestion des commissions — Espace admin | MarketPlace</title>
+
+  <link rel="stylesheet" href="../bootstrap-5.3.8-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Barre de navigation supérieure -->
+  <nav class="navbar navbar-expand-lg navbar-glass sticky-top">
+    <div class="container py-2">
+      <button class="btn btn-outline-secondary d-lg-none me-2" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#sidebarAdmin" aria-controls="sidebarAdmin"
+              aria-label="Menu latéral">
+        ☰
+      </button>
+
+      <a class="navbar-brand fw-semibold" href="../accueil.html">
+        <span class="text-primary">Market</span>Place
+        <span class="text-secondary fw-normal">/ Admin</span>
+      </a>
+
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <a class="btn btn-outline-secondary" href="../catalogue.html">Voir le site</a>
+
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Admin
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><h6 class="dropdown-header">Mon compte</h6></li>
+            <li><a class="dropdown-item" href="statistiques.html">Statistiques</a></li>
+            <a class="btn btn-outline-danger w-100" href="../accueil.html">Déconnexion</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row g-4">
+      <!-- Menu latéral (visible sur desktop) -->
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="bg-white rounded-4 border p-4">
+          <div class="fw-semibold mb-1">Menu admin</div>
+          <div class="text-secondary small mb-3">Paramétrage de la plateforme</div>
+
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action px-0" href="tableau-de-bord-admin.html">Tableau de bord</a>
+            <a class="list-group-item list-group-item-action px-0" href="gestion-vendeurs.html">Gestion vendeurs</a>
+            <a class="list-group-item list-group-item-action px-0 active" href="gestion-commissions.html">Gestion commissions</a>
+            <a class="list-group-item list-group-item-action px-0" href="gestion-commandes.html">Gestion commandes</a>
+            <a class="list-group-item list-group-item-action px-0" href="statistiques.html">Statistiques</a>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="alert alert-primary mb-0">
+            <div class="fw-semibold">💡 Rappel</div>
+            <div class="small mb-0">
+              Les commissions s'appliquent automatiquement à chaque vente selon la règle (catégorie).
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Contenu principal -->
+      <main class="col-lg-9">
+        <!-- En-tête avec titre et actions -->
+        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
+          <div>
+            <h1 class="h3 fw-semibold mb-1">Gestion des commissions</h1>
+            <p class="text-secondary mb-0">
+              Définir les taux par catégorie et visualiser l'impact sur les ventes.
+            </p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalCommissionGlobale">
+              Commission globale
+            </button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAjouterRegle">
+              + Ajouter une règle
+            </button>
+          </div>
+        </div>
+
+        <!-- Indicateurs clés -->
+        <div class="row g-3">
+          <div class="col-md-6 col-xl-4">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Taux moyen</div>
+              <div class="h4 fw-semibold mb-1">10.0%</div>
+              <div class="text-secondary small">sur les catégories actives</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Commissions (30 jours)</div>
+              <div class="h4 fw-semibold mb-1">128 600</div>
+              <div class="text-secondary small">FCFA </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4">
+            <div class="bg-white rounded-4 border p-3 h-100">
+              <div class="text-secondary small">Règles actives</div>
+              <div class="h4 fw-semibold mb-1">3</div>
+              <div class="text-secondary small">catégories couvertes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mt-1">
+          <!-- Tableau des règles -->
+          <div class="col-lg-8">
+            <div class="bg-white rounded-4 border p-4 p-md-5">
+              <div class="d-flex align-items-start justify-content-between gap-2 mb-3">
+                <div>
+                  <div class="fw-semibold">Règles de commission (par catégorie)</div>
+                  <div class="text-secondary small">Modification via les boutons "Modifier".</div>
+                </div>
+                <a href="#" class="link-secondary text-decoration-none small" onclick="return confirm('Réinitialiser les taux ? (simulation)')">Réinitialiser</a>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr class="text-secondary small">
+                      <th>Catégorie</th>
+                      <th>Type</th>
+                      <th class="text-end">Taux</th>
+                      <th class="text-end">Statut</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="fw-semibold">Électronique</td>
+                      <td><span class="badge text-bg-primary">Catégorie</span></td>
+                      <td class="text-end fw-semibold">8%</td>
+                      <td class="text-end"><span class="badge text-bg-success">Active</span></td>
+                      <td class="text-end">
+                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEditElectronique">
+                          Modifier
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="fw-semibold">Maison</td>
+                      <td><span class="badge text-bg-secondary">Catégorie</span></td>
+                      <td class="text-end fw-semibold">10%</td>
+                      <td class="text-end"><span class="badge text-bg-success">Active</span></td>
+                      <td class="text-end">
+                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEditMaison">
+                          Modifier
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="fw-semibold">Mode</td>
+                      <td><span class="badge text-bg-warning">Catégorie</span></td>
+                      <td class="text-end fw-semibold">12%</td>
+                      <td class="text-end"><span class="badge text-bg-success">Active</span></td>
+                      <td class="text-end">
+                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEditMode">
+                          Modifier
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="alert alert-primary mt-3 mb-0">
+                <div class="fw-semibold">⚙️ Automatisation</div>
+                <div class="small mb-0">
+                  À chaque paiement, le système applique la règle de la catégorie pour calculer commission et net vendeur.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aperçu d'impact -->
+          <div class="col-lg-4">
+            <div class="bg-white rounded-4 border p-4 p-md-5">
+              <div class="fw-semibold mb-1">Aperçu d'impact</div>
+              <div class="text-secondary small mb-3">Exemple sur une vente de 20 000 FCFA</div>
+
+              <div class="p-3 rounded-4 border mb-2">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Taux 8%</span><span class="text-secondary small">Électronique</span>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                  <span class="text-secondary">Commission</span><span class="fw-semibold">1 600</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span class="text-secondary">Net vendeur</span><span class="fw-semibold">18 400</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-4 border mb-2">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Taux 10%</span><span class="text-secondary small">Maison</span>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                  <span class="text-secondary">Commission</span><span class="fw-semibold">2 000</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span class="text-secondary">Net vendeur</span><span class="fw-semibold">18 000</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-4 border">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Taux 12%</span><span class="text-secondary small">Mode</span>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                  <span class="text-secondary">Commission</span><span class="fw-semibold">2 400</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span class="text-secondary">Net vendeur</span><span class="fw-semibold">17 600</span>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <div class="d-grid gap-2">
+                <a class="btn btn-outline-secondary" href="gestion-commandes.html">Voir les commandes</a>
+                <a class="btn btn-outline-primary" href="gestion-vendeurs.html">Voir les vendeurs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Menu latéral version mobile (offcanvas) -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarAdmin" aria-labelledby="sidebarAdminLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="sidebarAdminLabel">Menu admin</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="tableau-de-bord-admin.html">Tableau de bord</a>
+        <a class="list-group-item list-group-item-action" href="gestion-vendeurs.html">Gestion vendeurs</a>
+        <a class="list-group-item list-group-item-action active" href="gestion-commissions.html">Gestion commissions</a>
+        <a class="list-group-item list-group-item-action" href="gestion-commandes.html">Gestion commandes</a>
+        <a class="list-group-item list-group-item-action" href="statistiques.html">Statistiques</a>
+      </div>
+
+      <hr>
+
+      <a class="btn btn-outline-secondary w-100 mb-2" href="../catalogue.html">Voir le site</a>
+      <a class="btn btn-outline-danger w-100" href="connexion-admin.html">Déconnexion</a>
+    </div>
+  </div>
+
+  <!-- MODAL : Commission globale -->
+  <div class="modal fade" id="modalCommissionGlobale" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Commission globale (défaut)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-secondary mb-3">
+            Optionnel : appliquer un taux par défaut si une catégorie n'a pas de règle spécifique.
+          </p>
+          <div class="mb-3">
+            <label for="tauxGlobal" class="form-label">Taux global</label>
+            <div class="input-group input-group-lg">
+              <input type="number" class="form-control" id="tauxGlobal" value="10" min="0" max="100" step="0.5">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Ajouter une règle -->
+  <div class="modal fade" id="modalAjouterRegle" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter une règle de commission</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="categorieAjout" class="form-label">Catégorie</label>
+              <select class="form-select form-select-lg" id="categorieAjout">
+                <option value="" selected disabled>Choisir...</option>
+                <option>Électronique</option>
+                <option>Maison</option>
+                <option>Mode</option>
+                <option>Beauté</option>
+                <option>Sports</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="tauxAjout" class="form-label">Taux (%)</label>
+              <div class="input-group input-group-lg">
+                <input type="number" class="form-control" id="tauxAjout" placeholder="Ex: 9" min="0" max="100" step="0.5">
+                <span class="input-group-text">%</span>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" checked id="activeAjout">
+                <label class="form-check-label" for="activeAjout">Règle active</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Modifier Électronique -->
+  <div class="modal fade" id="modalEditElectronique" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier — Électronique</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <label for="tauxElectronique" class="form-label">Taux (%)</label>
+          <div class="input-group input-group-lg">
+            <input type="number" class="form-control" id="tauxElectronique" value="8" min="0" max="100" step="0.5">
+            <span class="input-group-text">%</span>
+          </div>
+          <div class="form-check mt-3">
+            <input class="form-check-input" type="checkbox" checked id="activeElectronique">
+            <label class="form-check-label" for="activeElectronique">Règle active</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Modifier Maison -->
+  <div class="modal fade" id="modalEditMaison" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier — Maison</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <label for="tauxMaison" class="form-label">Taux (%)</label>
+          <div class="input-group input-group-lg">
+            <input type="number" class="form-control" id="tauxMaison" value="10" min="0" max="100" step="0.5">
+            <span class="input-group-text">%</span>
+          </div>
+          <div class="form-check mt-3">
+            <input class="form-check-input" type="checkbox" checked id="activeMaison">
+            <label class="form-check-label" for="activeMaison">Règle active</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL : Modifier Mode -->
+  <div class="modal fade" id="modalEditMode" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier — Mode</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <label for="tauxMode" class="form-label">Taux (%)</label>
+          <div class="input-group input-group-lg">
+            <input type="number" class="form-control" id="tauxMode" value="12" min="0" max="100" step="0.5">
+            <span class="input-group-text">%</span>
+          </div>
+          <div class="form-check mt-3">
+            <input class="form-check-input" type="checkbox" checked id="activeMode">
+            <label class="form-check-label" for="activeMode">Règle active</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pied de page -->
+  <footer class="border-top mt-5">
+    <div class="container py-3">
+      <div class="text-center text-secondary small">
+        © 2026 MarketPlace — Espace admin
+      </div>
+    </div>
+  </footer>
+
+  <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

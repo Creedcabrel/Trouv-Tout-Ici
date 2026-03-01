@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catalogue — MarketPlace</title>
+
+  <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-glass sticky-top">
+    <div class="container py-2">
+      <a class="navbar-brand fw-semibold" href="accueil.html">
+        <span class="text-primary">Market</span>Place
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+              aria-controls="navMain" aria-expanded="false" aria-label="Menu navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="accueil.html">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="catalogue.html">Catalogue</a></li>
+          <li class="nav-item"><a class="nav-link" href="panier.html">Panier</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container py-4 py-lg-5">
+    <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3">
+      <div>
+        <nav aria-label="Fil d'Ariane">
+          <ol class="breadcrumb mb-2">
+            <li class="breadcrumb-item">
+              <a href="accueil.html" class="text-decoration-none">Accueil</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Catalogue</li>
+          </ol>
+        </nav>
+
+        <h1 class="h2 fw-semibold mb-1">Catalogue</h1>
+        <p class="text-secondary mb-0">Tous nos produits, avec filtres et tri.</p>
+      </div>
+
+      <div class="d-flex gap-2 align-items-center">
+        <div class="input-group" style="max-width: 420px;">
+          <span class="input-group-text bg-white">🔎</span>
+          <input type="search" class="form-control" placeholder="Rechercher un produit..." aria-label="Rechercher">
+        </div>
+
+        <button class="btn btn-outline-secondary d-lg-none" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#filtresOffcanvas"
+                aria-controls="filtresOffcanvas">
+          Filtres
+        </button>
+
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Trier
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Pertinence</a></li>
+            <li><a class="dropdown-item" href="#">Prix croissant</a></li>
+            <li><a class="dropdown-item" href="#">Prix décroissant</a></li>
+            <li><a class="dropdown-item" href="#">Nouveautés</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container pb-5">
+    <div class="row g-4">
+      <!-- Menu de filtrage -->
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="bg-white rounded-4 border p-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="fw-semibold">Filtres</div>
+            <a href="#" class="link-secondary small text-decoration-none">Réinitialiser</a>
+          </div>
+
+          <div class="mb-3">
+            <label for="categorieDesktop" class="form-label small text-secondary">Catégorie</label>
+            <select class="form-select" id="categorieDesktop">
+              <option selected>Toutes</option>
+              <option>Électronique</option>
+              <option>Mode</option>
+              <option>Maison</option>
+              <option>Beauté</option>
+              <option>Sports</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="vendeurDesktop" class="form-label small text-secondary">Vendeur</label>
+            <select class="form-select" id="vendeurDesktop">
+              <option selected>Tous</option>
+              <option>Boutique Alpha</option>
+              <option>Boutique Nova</option>
+              <option>Boutique K</option>
+              <option>Boutique Zen</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="prixDesktop" class="form-label small text-secondary">Prix</label>
+            <select class="form-select" id="prixDesktop">
+              <option selected>Tous</option>
+              <option>Moins de 10 000</option>
+              <option>10 000 - 25 000</option>
+              <option>25 000 - 50 000</option>
+              <option>Plus de 50 000</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <span class="form-label small text-secondary d-block">Note minimum</span>
+            <div class="d-grid gap-2">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ratingDesktop" id="r0Desktop" checked>
+                <label class="form-check-label" for="r0Desktop">Toutes les notes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ratingDesktop" id="r4Desktop">
+                <label class="form-check-label" for="r4Desktop">4 étoiles et +</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ratingDesktop" id="r3Desktop">
+                <label class="form-check-label" for="r3Desktop">3 étoiles et +</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-primary mb-0">
+            <div class="fw-semibold">Commissions</div>
+            <div class="small mb-0">Électronique 8% • Maison 10% • Mode 12% • Beauté 10%</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Menu  des produits -->
+      <section class="col-lg-9">
+        <div class="row g-3">
+          <!-- Produit 1 -->
+          <div class="col-sm-6 col-xl-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="p-3">
+                <div class="ratio ratio-4x3 rounded-3 overflow-hidden bg-light">
+                  <img src="Images/Produits/headphone_1.png" alt="Casque Bluetooth sans fil"
+                       class="w-100 h-100 object-fit-cover">
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-semibold">Casque Bluetooth</div>
+                    <div class="text-secondary small">Vendeur : Boutique Alpha</div>
+                  </div>
+                  <span class="badge text-bg-primary">Électronique</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <span class="fw-semibold">18 500 FCFA</span>
+                  <span class="text-secondary small">• 4.5 ★</span>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="fiche-produit.html" class="btn btn-outline-primary w-100">Détails</a>
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalPanier">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 2 -->
+          <div class="col-sm-6 col-xl-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="p-3">
+                <div class="ratio ratio-4x3 rounded-3 overflow-hidden bg-light">
+                  <img src="Images/Produits/enceinte portable.png" alt="Enceinte portable Bluetooth"
+                       class="w-100 h-100 object-fit-cover">
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-semibold">Enceinte portable</div>
+                    <div class="text-secondary small">Vendeur : Boutique Alpha</div>
+                  </div>
+                  <span class="badge text-bg-primary">Électronique</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <span class="fw-semibold">24 900 FCFA</span>
+                  <span class="text-secondary small">• 4.3 ★</span>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="fiche-produit2.html" class="btn btn-outline-primary w-100">Détails</a>
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalPanier">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 3 -->
+          <div class="col-sm-6 col-xl-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="p-3">
+                <div class="ratio ratio-4x3 rounded-3 overflow-hidden bg-light">
+                  <img src="Images/Produits/powzrbank.png" alt="Powerbank 20000mAh"
+                       class="w-100 h-100 object-fit-cover">
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-semibold">Powerbank 20 000mAh</div>
+                    <div class="text-secondary small">Vendeur : Boutique Alpha</div>
+                  </div>
+                  <span class="badge text-bg-primary">Électronique</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <span class="fw-semibold">13 900 FCFA</span>
+                  <span class="text-secondary small">• 4.6 ★</span>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="fiche-produit3.html" class="btn btn-outline-primary w-100">Détails</a>
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalPanier">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 4 -->
+          <div class="col-sm-6 col-xl-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="p-3">
+                <div class="ratio ratio-4x3 rounded-3 overflow-hidden bg-light">
+                  <img src="Images/Produits/chemise.png" alt="Chemise blanche classique"
+                       class="w-100 h-100 object-fit-cover">
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-semibold">Chemise classique</div>
+                    <div class="text-secondary small">Vendeur : Boutique K</div>
+                  </div>
+                  <span class="badge text-bg-warning">Mode</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <span class="fw-semibold">12 000 FCFA</span>
+                  <span class="text-secondary small">• 4.1 ★</span>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="fiche-produit4.html" class="btn btn-outline-primary w-100">Détails</a>
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalPanier">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 5 -->
+          <div class="col-sm-6 col-xl-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="p-3">
+                <div class="ratio ratio-4x3 rounded-3 overflow-hidden bg-light">
+                  <img src="Images/Produits/basket.png" alt="Baskets mode urbaine grises"
+                       class="w-100 h-100 object-fit-cover">
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-semibold">Baskets urbaines</div>
+                    <div class="text-secondary small">Vendeur : Boutique K</div>
+                  </div>
+                  <span class="badge text-bg-warning">Mode</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <span class="fw-semibold">19 500 FCFA</span>
+                  <span class="text-secondary small">• 3.8 ★</span>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="fiche-produit5.html" class="btn btn-outline-primary w-100">Détails</a>
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalPanier">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 6 -->
+          <div class="col-sm-6 col-xl-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="p-3">
+                <div class="ratio ratio-4x3 rounded-3 overflow-hidden bg-light">
+                  <img src="Images/Produits/carnet.png" alt="Carnet en cuir marron"
+                       class="w-100 h-100 object-fit-cover">
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-semibold">Carnet premium</div>
+                    <div class="text-secondary small">Vendeur : Boutique Nova</div>
+                  </div>
+                  <span class="badge text-bg-secondary">Maison</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <span class="fw-semibold">6 000 FCFA</span>
+                  <span class="text-secondary small">• 4.2 ★</span>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="fiche-produit6.html" class="btn btn-outline-primary w-100">Détails</a>
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalPanier">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 7 avec promo -->
+          <div class="col-sm-6 col-xl-4">
+            <div class="card border-0 shadow-sm h-100 position-relative">
+              <div class="p-3">
+                <span class="badge text-bg-danger position-absolute top-0 start-0 m-3">-15%</span>
+                <div class="ratio ratio-4x3 rounded-3 overflow-hidden bg-light">
+                  <img src="Images/Produits/mixeur.png" alt="Mixeur compact argenté"
+                       class="w-100 h-100 object-fit-cover">
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-semibold">Mixeur compact</div>
+                    <div class="text-secondary small">Vendeur : Boutique Nova</div>
+                  </div>
+                  <span class="badge text-bg-secondary">Maison</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <span class="fw-semibold">17 000 FCFA</span>
+                  <span class="text-secondary small">• 4.0 ★</span>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="fiche-produit7.html" class="btn btn-outline-primary w-100">Détails</a>
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalPanier">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 8 -->
+          <div class="col-sm-6 col-xl-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="p-3">
+                <div class="ratio ratio-4x3 rounded-3 overflow-hidden bg-light">
+                  <img src="Images/Produits/parfum.png" alt="Flacon de parfum élégant"
+                       class="w-100 h-100 object-fit-cover">
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-semibold">Parfum doux</div>
+                    <div class="text-secondary small">Vendeur : Boutique Zen</div>
+                  </div>
+                  <span class="badge text-bg-light border">Beauté</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <span class="fw-semibold">14 500 FCFA</span>
+                  <span class="text-secondary small">• 4.7 ★</span>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="fiche-produit8.html" class="btn btn-outline-primary w-100">Détails</a>
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalPanier">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 9 -->
+          <div class="col-sm-6 col-xl-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="p-3">
+                <div class="ratio ratio-4x3 rounded-3 overflow-hidden bg-light">
+                  <img src="Images/Produits/kit.png" alt="Kit de soin visage 3 produits"
+                       class="w-100 h-100 object-fit-cover">
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fw-semibold">Kit soin visage</div>
+                    <div class="text-secondary small">Vendeur : Boutique Zen</div>
+                  </div>
+                  <span class="badge text-bg-light border">Beauté</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <span class="fw-semibold">9 900 FCFA</span>
+                  <span class="text-secondary small">• 4.2 ★</span>
+                </div>
+                <div class="d-flex gap-2 mt-3">
+                  <a href="fiche-produit9.html" class="btn btn-outline-primary w-100">Détails</a>
+                  <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalPanier">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination des produits -->
+        <nav class="mt-4" aria-label="Pagination des produits">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled"><span class="page-link">Précédent</span></li>
+            <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+            <li class="page-item"><a class="page-link" href="catalogue2.html">2</a></li>
+            <li class="page-item"><a class="page-link" href="catalogue3.html">3</a></li>
+            <li class="page-item"><a class="page-link" href="catalogue2.html">Suivant</a></li>
+          </ul>
+        </nav>
+      </section>
+    </div>
+  </main>
+
+  <!-- Offcanvas filtres mobile -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="filtresOffcanvas" aria-labelledby="filtresLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="filtresLabel">Filtres</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <div class="mb-3">
+        <label for="categorieMobile" class="form-label small text-secondary">Catégorie</label>
+        <select class="form-select" id="categorieMobile">
+          <option selected>Toutes</option>
+          <option>Électronique</option>
+          <option>Mode</option>
+          <option>Maison</option>
+          <option>Beauté</option>
+          <option>Sports</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="vendeurMobile" class="form-label small text-secondary">Vendeur</label>
+        <select class="form-select" id="vendeurMobile">
+          <option selected>Tous</option>
+          <option>Boutique Alpha</option>
+          <option>Boutique Nova</option>
+          <option>Boutique K</option>
+          <option>Boutique Zen</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="prixMobile" class="form-label small text-secondary">Prix</label>
+        <select class="form-select" id="prixMobile">
+          <option selected>Tous</option>
+          <option>Moins de 10 000</option>
+          <option>10 000 -  25 000</option>
+          <option>25 000 - 50 000</option>
+          <option>Plus de 50 000</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <span class="form-label small text-secondary d-block">Note minimum</span>
+        <div class="d-grid gap-2">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="ratingMobile" id="r0Mobile" checked>
+            <label class="form-check-label" for="r0Mobile">Toutes les notes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="ratingMobile" id="r4Mobile">
+            <label class="form-check-label" for="r4Mobile">4 étoiles et +</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="ratingMobile" id="r3Mobile">
+            <label class="form-check-label" for="r3Mobile">3 étoiles et +</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-primary">
+        <div class="fw-semibold">Commissions</div>
+        <div class="small mb-0">Électronique 8% • Maison 10% • Mode 12% • Beauté 10%</div>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button class="btn btn-primary flex-grow-1" type="button" data-bs-dismiss="offcanvas">
+          Appliquer
+        </button>
+        <a href="#" class="btn btn-outline-secondary">Réinitialiser</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal ajout panier -->
+  <div class="modal fade" id="modalPanier" tabindex="-1" aria-labelledby="modalPanierLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalPanierLabel">Ajout au panier</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          Produit ajouté au panier.<br />
+          Vous pourrez voir le panier et le paiement à l'étape suivante.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Continuer
+          </button>
+          <a href="panier.html" class="btn btn-primary">Voir le panier</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="border-top">
+    <div class="container py-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+        <div class="text-secondary small">© 2026 MarketPlace — Démo statique</div>
+        <div class="d-flex gap-3 small">
+          <a class="link-secondary" href="pages/a-propos.html">À propos</a>
+          <a class="link-secondary" href="pages/contact.html">Contact</a>
+          <a class="link-secondary" href="pages/faq.html">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
