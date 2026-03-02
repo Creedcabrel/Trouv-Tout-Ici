@@ -38,14 +38,12 @@
           <form>
             <div class="row g-3">
               <div class="col-md-6">
-                <label for="boutiqueNom" class="form-label">Nom de la boutique</label>
-                <input type="text" class="form-control form-control-lg" id="boutiqueNom"  required>
+                <input type="text" class="form-control form-control-lg" id="boutiqueNom" placeholder="Nom de la boutique" required>
               </div>
 
               <div class="col-md-6">
-                <label for="categoriePrincipale" class="form-label">Catégorie principale</label>
                 <select class="form-select form-select-lg" id="categoriePrincipale" required>
-                  <option value="" selected disabled>Choisir...</option>
+                  <option value="" selected disabled>Catégorie principale</option>
                   <option>Électronique</option>
                   <option>Maison</option>
                   <option>Mode</option>
@@ -54,34 +52,28 @@
               </div>
 
               <div class="col-md-6">
-                <label for="responsableNom" class="form-label">Nom du responsable</label>
                 <input type="text" class="form-control form-control-lg" id="responsableNom" 
                        placeholder="Nom complet" required>
               </div>
 
               <div class="col-md-6">
-                <label for="telephone" class="form-label">Téléphone</label>
                 <input type="tel" class="form-control form-control-lg" id="telephone" 
-                       placeholder="+229 01 23 45 67" pattern="[0-9+\s]{10,}" 
+                       placeholder="Téléphone" pattern="[0-9+\s]{10,}" 
                        title="Numéro de téléphone valide (ex: +229 01 23 45 67)" required>
               </div>
 
               <div class="col-12">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control form-control-lg" id="email" 
-                       placeholder="boutique@demo.com" required>
+                <input type="email" class="form-control form-control-lg" id="email" placeholder="Email" required>
               </div>
 
               <div class="col-12">
-                <label for="adresse" class="form-label">Adresse</label>
                 <input type="text" class="form-control form-control-lg" id="adresse" 
                        placeholder="Ville, quartier..." required>
               </div>
 
               <div class="col-md-6">
-                <label for="pieceIdentite" class="form-label">Pièce d'identité</label>
                 <select class="form-select form-select-lg" id="pieceIdentite">
-                  <option value="" selected disabled>Choisir...</option>
+                  <option value="" selected disabled>Pièce d'identité</option>
                   <option>CIP</option>
                   <option>Passeport</option>
                   <option>Carte nationale</option>
@@ -89,15 +81,13 @@
               </div>
 
               <div class="col-md-6">
-                <label for="motdepasse" class="form-label">Mot de passe</label>
                 <input type="password" class="form-control form-control-lg" id="motdepasse" 
-                       placeholder="••••••••" minlength="6" required>
+                       placeholder="Mot de passe" minlength="6" required>
               </div>
 
               <div class="col-md-6">
-                <label for="motdepasseConfirmation" class="form-label">Confirmer</label>
                 <input type="password" class="form-control form-control-lg" id="motdepasseConfirmation" 
-                       placeholder="••••••••" required>
+                       placeholder="Confirmer votre mot de passe" required>
               </div>
 
               <div class="col-12">

@@ -72,30 +72,25 @@
           <form action="#" method="get">
             <div class="row g-3">
               <div class="col-md-6">
-                <label for="nom" class="form-label">Nom</label>
-                <input class="form-control form-control-lg" type="text" id="nom" placeholder="Votre nom" required>
+                <input class="form-control form-control-lg" type="text" id="nom" placeholder="Nom" required>
               </div>
               <div class="col-md-6">
-                <label for="prenom" class="form-label">Prénom</label>
-                <input class="form-control form-control-lg" type="text" id="prenom" placeholder="Votre prénom" required>
+                <input class="form-control form-control-lg" type="text" id="prenom" placeholder="Prénom" required>
               </div>
               <div class="col-12">
-                <label for="telephone" class="form-label">Téléphone</label>
-                <input class="form-control form-control-lg" type="tel" id="telephone" placeholder="+229 01 23 45 67" required>
+                <input class="form-control form-control-lg" type="tel" id="telephone" placeholder="Téléphone" required>
               </div>
               <div class="col-12">
-                <label for="adresse" class="form-label">Adresse de livraison</label>
-                <input class="form-control form-control-lg" type="text" id="adresse" placeholder="Quartier, rue, repères…" required>
+                <input class="form-control form-control-lg" type="text" id="adresse" placeholder="Adresse de livraison" required>
               </div>
               <div class="col-md-6">
-                <label for="ville" class="form-label">Ville</label>
-                <input class="form-control form-control-lg" type="text" id="ville" placeholder="Cotonou" required>
+                <input class="form-control form-control-lg" type="text" id="ville" placeholder="Ville" required>
               </div>
               <div class="col-md-6">
-                <label for="livraison" class="form-label">Mode de livraison</label>
                 <select class="form-select form-select-lg" id="livraison">
-                  <option selected>Standard (24-72h) — 1 500 FCFA</option>
-                  <option>Express (24h) — 3 000 FCFA</option>
+                  <option value="" selected disabled>Mode de livraison</option>
+                  <option selected>Standard (24-72h) 1 500 FCFA</option>
+                  <option>Express (24h)  3 000 FCFA</option>
                 </select>
               </div>
             </div>
@@ -236,7 +231,7 @@
             <span class="fw-semibold">1 500 FCFA</span>
           </div>
           <div class="d-flex justify-content-between py-2">
-            <span class="text-secondary">Taxes (simulées)</span>
+            <span class="text-secondary">Taxes </span>
             <span class="fw-semibold">0 FCFA</span>
           </div>
 
